@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Maker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="question-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 p-0">
+            <nav id="navbar">
+              <div class="nav-logo">
+                <a href="index.html"
+                  ><img src="./img/logo navbar small.svg" alt=""
+                /></a>
+              </div>
+              <ul class="nav-list">
+                <li class="list-item nav-title">Quiz Master</li>
+                <li class="list-item"><span class="line d-block"></span></li>
+                <li class="list-item">
+                  <a href="index.html" class="nav-icon">Home</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-md-10 offset-1 p-0 question-block">
+            <div class="question-body">
+              <h1 class="page-title text-center">Qusetion</h1>
+              <p class="question-number text-center">
+                <span class="active-question-number"></span> /
+                <span class="all-qustion-number"></span>
+              </p>
+              <p class="question-title text-center"></p>
+              <div class="answers-bar">
+                <div class="bar d-flex align-items-center">
+                  <input
+                    id="answer1"
+                    type="radio"
+                    name="answer"
+                    class="d-none"
+                  />
+                  <label for="answer1" class="m-0"
+                    ><div class="checkbox">
+                      <div class="checkbox-round"></div>
+                    </div>
+                    <span class="an1"></span>
+                  </label>
+                </div>
+                <div class="bar d-flex align-items-center">
+                  <input
+                    id="answer2"
+                    type="radio"
+                    name="answer"
+                    class="d-none"
+                  />
+                  <label for="answer2" class="m-0"
+                    ><div class="checkbox">
+                      <div class="checkbox-round"></div>
+                    </div>
+                    <span class="an2"></span>
+                  </label>
+                </div>
+                <div class="bar d-flex align-items-center">
+                  <input
+                    id="answer3"
+                    type="radio"
+                    name="answer"
+                    class="d-none"
+                  />
+                  <label for="answer3" class="m-0"
+                    ><div class="checkbox">
+                      <div class="checkbox-round"></div>
+                    </div>
+                    <span class="an3"></span>
+                  </label>
+                </div>
+                <div class="bar d-flex align-items-center">
+                  <input
+                    id="answer4"
+                    type="radio"
+                    name="answer"
+                    class="d-none"
+                  />
+                  <label for="answer4" class="m-0"
+                    ><div class="checkbox">
+                      <div class="checkbox-round"></div>
+                    </div>
+                    <span class="an4"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="next-btn">
+                <button class="btn prev-button d-none" type="button">
+                  <span class="next-icon"
+                    ><img src="./img/chevron-right.svg" alt=""
+                  /></span>
+                  <a href="#">Prev Question</a>
+                </button>
+                <button class="btn next-button" type="button">
+                  <a href="#">Next Question</a>
+                  <span class="next-icon"
+                    ><img src="./img/chevron-right.svg" alt=""
+                  /></span>
+                </button>
+              </div>
+              <p class="time text-center">00 : 00 : 00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="result-box" class="d-none">
+      <div id="pop-up">
+        <h1 class="popup-title">CONGRATULATION</h1>
+        <h1 class="popup-text">You answered</h1>
+        <h1 class="popup-score">
+          <span class="corrects"></span> / <span class="allquestions"></span>
+        </h1>
+        <h1 class="popup-text">questions correct</h1>
+        <div class="popup-buttons">
+          <button class="btn btn-playAgain" type="button">Play again</button>
+          <button class="btn btn-backToHome" type="button">Back to home</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+      integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="./script.js"></script>
+    <script defer>
+      let questions = [];
+      $.ajax({
+        type: "GET",
+        url: "main.php",
+        dataType: "JSON",
+        success: function (res) {
+          res.map((item) => {
+            questions.push(item);
+          });
+          $(".all-qustion-number").text(questions.length);
+          shuffle(questions);
+          printQuestion();
+        },
+        error: function (e) {
+          console.log(e);
+        },
+      });
+      let trueAnswers = [];
+      let prevQuestions = [];
+      let correctAnswers = 0;
+      // Time
+      let count = 0;
+      let minute = 0;
+      let hour = 0;
+      let seconds = 0;
+      let timmy = setInterval(showTime, 1000);
+      // Timer
+      function showTime() {
+        //update the time as hours, minutes, and seconds 00:00:00
+        seconds++;
+        let hours = Math.floor(seconds / 3600);
+        let mins = Math.floor(seconds / 60) - hours * 60;
+        let secs = Math.floor(seconds % 60);
+        let output =
+          hours.toString().padStart(2, "0") +
+          " : " +
+          mins.toString().padStart(2, "0") +
+          " : " +
+          secs.toString().padStart(2, "0");
+        $(".time").text(output);
+        if (mins >= questions.length) {
+          calculateAnswers();
+          clearInterval(timmy);
+          $("#result-box").removeClass("d-none").addClass("d-flex");
+          $("#pop-up .popup-score .corrects").text(correctAnswers);
+          $("#pop-up .popup-score .allquestions").text(questions.length);
+          $("#result-box .popup-buttons .btn-playAgain").click(function () {
+            location.reload();
+          });
+          $("#result-box .popup-buttons .btn-backToHome").click(function () {
+            $("#result-box").removeClass("d-flex").addClass("d-none");
+            window.location.href = "index.html";
+          });
+        }
+      }
+      // Array shuffle
+      function shuffle(array) {
+        var currentIndex = array.length,
+          temporaryValue,
+          randomIndex;
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+      }
+      // show each question
+      function printQuestion() {
+        if (count !== questions.length) {
+          count++;
+          if (count <= prevQuestions.length) {
+            prevquestion();
+          } else {
+            let answers = [];
+            questions.map((item, index) => {
+              if (index === count - 1) {
+                trueAnswers.push(item.an_tr1);
+                answers.push(item.an_tr1, item.an2, item.an3, item.an4);
+                shuffle(answers);
+              }
+            });
+            $(".active-question-number").text(count);
+            $(".question-title").text(function () {
+              let index = count - 1;
+              return questions[index].name;
+            });
+            $(".an1").text(answers[0]);
+            $(".an2").text(answers[1]);
+            $(".an3").text(answers[2]);
+            $(".an4").text(answers[3]);
+          }
+        } else {
+          calculateAnswers();
+          clearInterval(timmy);
+          $("#result-box").removeClass("d-none").addClass("d-flex");
+          $("#pop-up .popup-score .corrects").text(correctAnswers);
+          $("#pop-up .popup-score .allquestions").text(questions.length);
+
+          $("#result-box .popup-buttons .btn-playAgain").click(function () {
+            location.reload();
+          });
+          $("#result-box .popup-buttons .btn-backToHome").click(function () {
+            $("#result-box").removeClass("d-flex").addClass("d-none");
+            window.location.href = "index.html";
+          });
+        }
+        if (count >= questions.length) {
+          $(".next-btn .next-button a").text("Finish");
+        }
+        if (count > 1) {
+          $(".prev-button").removeClass("d-none");
+        }
+      }
+      // calculate true answers
+      function calculateAnswers() {
+        let yourAnswers = [];
+        prevQuestions.map((item) => {
+          yourAnswers.push(item.prevanswers[item.correctIndex]);
+        });
+        yourAnswers.map((item, index) => {
+          if (item == trueAnswers[index]) {
+            correctAnswers++;
+          }
+        });
+      }
+      // show preview question
+      function prevquestion() {
+        $(".active-question-number").text(count);
+        prevQuestions.map((item, index) => {
+          if (index == count - 1) {
+            $(".question-title").text(item.name);
+            $(".an1").text(item.prevanswers[0]);
+            $(".an2").text(item.prevanswers[1]);
+            $(".an3").text(item.prevanswers[2]);
+            $(".an4").text(item.prevanswers[3]);
+            if (item.correctIndex !== "empty") {
+              $(".bar")
+                .eq(item.correctIndex)
+                .addClass("selected")
+                .siblings()
+                .removeClass("selected");
+            } else {
+              $(".bar").removeClass("selected");
+            }
+          }
+        });
+        if (count == questions.length - 1) {
+          $(".next-btn .next-button a").text("Next Question");
+        }
+        if (count <= 1) {
+          $(".prev-button").addClass("d-none");
+        }
+      }
+      // show selected question
+      $(".answers-bar .bar").click(function (e) {
+        e.preventDefault();
+        $(this).addClass("selected").siblings().removeClass("selected");
+        let name = $(".question-title").text();
+        let prevanswers = [
+          $(".an1").text(),
+          $(".an2").text(),
+          $(".an3").text(),
+          $(".an4").text(),
+        ];
+        let correctIndex = $(this).index();
+        prevQuestions.splice(count - 1, 1, {
+          name: name,
+          prevanswers: prevanswers,
+          correctIndex: correctIndex,
+        });
+      });
+      // draw next question
+      $(".next-button").click(function () {
+        if (!$(".bar").hasClass("selected")) {
+          let name = $(".question-title").text();
+          let prevanswers = [
+            $(".an1").text(),
+            $(".an2").text(),
+            $(".an3").text(),
+            $(".an4").text(),
+          ];
+          prevQuestions.splice(count - 1, 1, {
+            name: name,
+            prevanswers: prevanswers,
+            correctIndex: "empty",
+          });
+        }
+        $(".bar").map((index, item) => {
+          $(item).removeClass("selected");
+        });
+        printQuestion();
+      });
+      // draw prev question
+      $(".prev-button").click(function () {
+        if (count > 1) {
+          count--;
+          prevquestion();
+        }
+      });
+    </script>
+  </body>
+</html>

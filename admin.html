@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Maker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+  </head>
+  <body>
+    <div id="admin-page">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="content">
+            <img src="./img/developer-image.svg" alt="" />
+            <form onsubmit="return false" action="#">
+              <label for="name" class="d-block">Login</label>
+              <input type="text" id="name" placeholder="Admin" disabled />
+              <label for="password" class="d-block">Password</label>
+              <input
+                type="password"
+                class="d-block admin-password"
+                id="password"
+                placeholder="Password"
+                autocomplete="on"
+                required
+              />
+              <button class="btn btn-submit d-block enter-db" type="submit">
+                Sign in
+              </button>
+            </form>
+            <button
+              class="forgot-password border-0"
+              data-toggle="modal"
+              data-target="#staticBackdrop"
+            >
+              Forget password?
+            </button>
+          </div>
+          <div
+            class="modal fade"
+            id="staticBackdrop"
+            data-backdrop="static"
+            data-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">
+                    Password Recovery
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <label for="inputPassword5">Your Email</label>
+                  <input
+                    type="email"
+                    id="inputPassword5"
+                    class="form-control"
+                    aria-describedby="passwordHelpBlock"
+                  />
+                  <small
+                    id="passwordHelpBlock"
+                    class="form-text text-success succesMessage"
+                  ></small>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-messageSend">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 text-right">
+            <a href="index.html"><img src="./img/log-out-icon.svg" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./script.js"></script>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Maker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div id="home-page">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div
+            class="col-md-6 col-sm-12 d-flex align-items-center justify-content-center left-side"
+          >
+            <img src="./img/logo.svg" alt="" />
+          </div>
+          <div
+            class="col-md-6 col-sm-12 d-flex align-items-center justify-content-center right-side"
+          >
+            <form
+              action="#"
+              class="d-flex align-items-center justify-content-center flex-column"
+            >
+              <div class="user-image">
+                <img src="./img/person image.svg" alt="" />
+              </div>
+              <div class="user-info">
+                <label for="name" class="d-block">Name</label>
+                <input type="text" id="name" placeholder="Your name" required />
+                <label for="surname" class="d-block">Surname</label>
+                <input
+                  type="text"
+                  id="surname"
+                  placeholder="Your surname"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div
+            class="home-buttons d-flex align-items-center justify-content-center flex-column"
+          >
+            <div class="playbutton">
+              <button
+                class="btn play-btn"
+                id="play-btn"
+                type="submit"
+                onclick="return myfunc();"
+              >
+                <a href="#" id="location_play" class="w-100 h-100"
+                  ><img src="./img/play-icon.svg" alt="" /><span class="play-text d-none"
+                    >Play</span
+                  ></a
+                >
+              </button>
+            </div>
+            <div class="addbutton">
+              <button class="btn add-btn" type="button" onclick="adminPage()">
+                <a href="./admin.html" id="location_add"
+                  ><img src="./img/add.svg" alt=""
+                /></a>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <p class="home-title text-center">Press play for running test</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./script.js"></script>
+</html>

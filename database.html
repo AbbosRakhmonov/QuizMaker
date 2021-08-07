@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Maker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="data-page">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="#"
+            ><img src="./img/logo small.svg" alt=""
+          /></a>
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+            <li class="nav-item">
+              <a class="nav-link link-page" aria-current="page">QUIZ MASTER</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><span class="nav-line"></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-home" href="./index.html">Home</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-md-12 col-sm-12 d-flex align-items-center justify-content-between bottom-nav"
+          >
+            <p class="search-bar-title m-0">Question</p>
+            <div class="input-group search-box">
+              <div class="input-group-prepend">
+                <label class="input-group-text search-icon" for="search-input"
+                  ><img src="./img/search-icon.svg" alt=""
+                /></label>
+              </div>
+              <input
+                type="text"
+                class="form-control search-bar"
+                placeholder="type something to search..."
+                id="search-input"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+            <button class="btn search-bar-btn">
+              Add <img src="./img/plus-add.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12 p-0 bg-white main-table">
+        <div class="container">
+          <table class="table border-0 m-0">
+            <thead>
+              <tr class="table-row">
+                <th class="select-col border-0">Select</th>
+                <th class="number-col border-0">Nth</th>
+                <th class="title-col border-0">Title</th>
+                <th class="edit-col border-0 text-right">Edit</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12 p-0 question-table">
+        <div class="container">
+          <table class="table border-0 m-0">
+            <tbody id="question-lists"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="result-box" class="d-none">
+      <div id="question-add-pop" class="d-none">
+        <h1 class="pop-up-title text-center">Add New Question</h1>
+        <textarea
+          name="question-name"
+          id="question-name"
+          placeholder="Question title ..."
+        ></textarea>
+        <div class="answers">
+          <input class="btn answer-btn an_1 correct" placeholder="Correct Answer"></input>
+          <input class="btn answer-btn an_2" placeholder="Incorrect Answer"></input>
+          <input class="btn answer-btn an_3" placeholder="Incorrect Answer"></input>
+          <input class="btn answer-btn an_4" placeholder="Incorrect Answer"></input>
+        </div>
+        <button class="btn btn-add-question">Add</button>
+        <button class="btn cancel-btn"><img src="./img/close-button.svg" alt=""></button>
+      </div>
+      <div id="question-edit-pop" class="d-none">
+        <h1 class="pop-up-title text-center">Edit Question</h1>
+        <textarea
+          name="question-name"
+          id="question-name"
+          placeholder="Question title ..."
+        ></textarea>
+        <div class="answers">
+          <input class="btn answer-btn an_1 correct" placeholder="Correct Answer"></input>
+          <input class="btn answer-btn an_2" placeholder="Incorrect Answer"></input>
+          <input class="btn answer-btn an_3" placeholder="Incorrect Answer"></input>
+          <input class="btn answer-btn an_4" placeholder="Incorrect Answer"></input>
+        </div>
+        <button class="btn btn-add-question">Save</button>
+        <button class="btn cancel-btn"><img src="./img/close-button.svg" alt=""></button>
+      </div>
+      <div id="question-delete-pop" class="d-none">
+        <h1 class="pop-up-title text-center">Are you sure want to delete?</h1>
+        <div class="bool-btns">
+          <button class="btn false-btn" type="button">No</button>
+          <button class="btn true-btn" type="button">Yes</button>
+        </div>
+      </div>
+    </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./script.js"></script>
+  </body>
+</html>
